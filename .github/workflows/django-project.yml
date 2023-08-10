@@ -14,9 +14,8 @@ jobs:
     name: CI
     runs-on: ubuntu-latest
     env:
-      PIPENV_VENV_IN_PROJECT: 1
       PIPENV_NO_INHERIT: 1
-
+      PIPENV_IGNORE_VIRTUALENVS: 1
     steps:
       - uses: actions/checkout@v3
 
@@ -26,17 +25,20 @@ jobs:
           python-version: "3.11"
 
       - name: Install dependencies
-        run: |
+        run: | 
           pip install pipenv
           pipenv sync --dev
 
       - name: Lint with flake8
-        run: |
-          pipenv run flake8 .
+        run: pipenv run flake8 .
 
       - name: Test with pytest
-        run: |
-          pipenv run pytest
+        run: pipenv run pytest --cov=pypro
+
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v3
+        env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
 
   deploy:
     name: Deploy

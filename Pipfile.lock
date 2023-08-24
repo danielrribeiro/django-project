@@ -33,12 +33,8 @@
             "version": "==1.28.32"
         },
         "botocore": {
-            "hashes": [
-                "sha256:7a07d8dc8cc47bf23af39409ada81f388eb78233e1bb2cde0c415756da753664",
-                "sha256:8992ac186988c4b4cc168e8e479e9472da1442b193c1bf7c9dcd1877ec62d23c"
-            ],
-            "markers": "python_version >= '3.7'",
-            "version": "==1.31.32"
+            "hashes": [],
+            "version": "==1.31.33"
         },
         "dj-database-url": {
             "hashes": [

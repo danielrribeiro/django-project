@@ -5,14 +5,12 @@ FROM python:${PYTHON_VERSION}
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 
-RUN mkdir -p /code
-
-WORKDIR /code
+WORKDIR /app
 
 RUN pip install pipenv
-COPY Pipfile Pipfile.lock /code/
+COPY Pipfile Pipfile.lock /app/
 RUN pipenv install --deploy --system
-COPY . /code
+COPY . /app
 
 EXPOSE 8000
 

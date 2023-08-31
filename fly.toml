@@ -20,6 +20,6 @@ console_command = "/code/manage.py shell"
   min_machines_running = 0
   processes = ["app"]
 
-[[statics]]
-  guest_path = "/code/static"
-  url_prefix = "/static/"
+#[[statics]]
+#  guest_path = "/app/staticfiles"
+#  url_prefix = "/static/"

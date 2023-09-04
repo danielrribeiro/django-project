@@ -57,12 +57,8 @@
             "version": "==2.1.0"
         },
         "django": {
-            "hashes": [
-                "sha256:7e4225ec065e0f354ccf7349a22d209de09cc1c074832be9eb84c51c1799c432",
-                "sha256:860ae6a138a238fc4f22c99b52f3ead982bb4b1aad8c0122bcd8c8a3a02e409d"
-            ],
-            "index": "pypi",
-            "version": "==4.2.4"
+            "hashes": [],
+            "version": "==4.2.5"
         },
         "django-s3-folder-storage": {
             "hashes": [

@@ -30,6 +30,7 @@ DEBUG = config('DEBUG', default=False, cast=bool)
 
 ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
 
+AUTH_USER_MODEL = 'base.User'
 
 # Application definition
 
@@ -147,9 +148,10 @@ if AWS_ACCESS_KEY_ID:  # pragma: no cover
     AWS_DEFAULT_ACL = 'private'
     COLLECTFAST_ENABLED = True
     COLLECTFAST_STRATEGY = 'collectfast.strategies.boto3.Boto3Strategy'
+    STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
     # Static Media Folder
-    STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+    STATICFILES_STORAGE = 's3_folder_storage.s3.StaticStorage'
     STATIC_S3_PATH = 'static'
     STATIC_ROOT = f'/{STATIC_S3_PATH}/'
     STATIC_URL = f'//{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com/{STATIC_S3_PATH}/'

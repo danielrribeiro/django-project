@@ -1,4 +1,4 @@
-# fly.toml app configuration file generated for django-pythonpro on 2023-08-08T01:41:27-03:00
+# fly.toml app configuration file generated for django-pythonpro on 2023-09-11T11:51:31-03:00
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
@@ -8,6 +8,9 @@ primary_region = "gru"
 console_command = "/code/manage.py shell"
 
 [build]
+
+[deploy]
+  release_command = "python manage.py migrate"
 
 [env]
   PORT = "8000"
@@ -19,10 +22,3 @@ console_command = "/code/manage.py shell"
   auto_start_machines = true
   min_machines_running = 0
   processes = ["app"]
-
-[deploy]
-  release_command = "python manage.py migrate --noinput"
-
-#[[statics]]
-#  guest_path = "/app/staticfiles"
-#  url_prefix = "/static/"

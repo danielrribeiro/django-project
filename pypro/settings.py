@@ -172,4 +172,4 @@ if AWS_ACCESS_KEY_ID:  # pragma: no cover
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-CSRF_TRUSTED_ORIGINS = ['https://django-pythonpro.fly.dev/']
+CSRF_TRUSTED_ORIGINS = ['https://django-pythonpro.fly.dev']

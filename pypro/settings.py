@@ -15,6 +15,9 @@ from pathlib import Path
 from decouple import config, Csv
 from dj_database_url import parse as db_url
 
+import sentry_sdk
+from sentry_sdk.integrations.django import DjangoIntegration
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -33,7 +36,6 @@ ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
 AUTH_USER_MODEL = 'base.User'
 
 # Application definition
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -76,8 +78,7 @@ TEMPLATES = [
 WSGI_APPLICATION = 'pypro.wsgi.application'
 
 # Django Debbug Toolbar Configuration
-
-if DEBUG:
+if DEBUG:  # pragma: no cover
     INSTALLED_APPS.append('debug_toolbar')
     MIDDLEWARE.insert(0, 'debug_toolbar.middleware.DebugToolbarMiddleware')
     INTERNAL_IPS = ['127.0.0.1']
@@ -130,7 +131,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 # Development Environment Configuration
-
 STATIC_URL = 'static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
@@ -140,7 +140,6 @@ MEDIA_ROOT = BASE_DIR / 'mediafiles'
 COLLECTFAST_ENABLED = False
 
 # Storage Configuration in S3 AWS
-
 AWS_ACCESS_KEY_ID = config('AWS_ACCESS_KEY_ID')
 
 if AWS_ACCESS_KEY_ID:  # pragma: no cover
@@ -173,9 +172,28 @@ if AWS_ACCESS_KEY_ID:  # pragma: no cover
     INSTALLED_APPS.append('s3_folder_storage')
     INSTALLED_APPS.append('storages')
 
+# Sentry Configuration
+SENTRY_DSN = config('SENTRY_DSN', default=None)
+
+if SENTRY_DSN:  # pragma: no cover
+    sentry_sdk.init(
+        dsn=SENTRY_DSN,
+        integrations=[DjangoIntegration()],
+        # If you wish to associate users to errors (assuming you are using
+        # django.contrib.auth) you may enable sending PII data.
+        send_default_pii=True,
+        # Set traces_sample_rate to 1.0 to capture 100% of transactions for performance monitoring.
+        # We recommend adjusting this value in production.
+        traces_sample_rate=1.0,
+        # Set profiles_sample_rate to 1.0 to profile 100% of sampled transactions.
+        # We recommend adjusting this value in production.
+        profiles_sample_rate=1.0,
+    )
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+# Cross Site Request Forgery: protection
 CSRF_TRUSTED_ORIGINS = ['https://django-pythonpro.fly.dev']

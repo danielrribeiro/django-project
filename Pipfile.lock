@@ -65,12 +65,8 @@
             "version": "==2.1.0"
         },
         "django": {
-            "hashes": [
-                "sha256:5e5c1c9548ffb7796b4a8a4782e9a2e5a3df3615259fc1bfd3ebc73b646146c1",
-                "sha256:b6b2b5cae821077f137dc4dade696a1c2aa292f892eca28fa8d7bfdf2608ddd4"
-            ],
-            "index": "pypi",
-            "version": "==4.2.5"
+            "hashes": [],
+            "version": "==4.2.7"
         },
         "django-debug-toolbar": {
             "hashes": [

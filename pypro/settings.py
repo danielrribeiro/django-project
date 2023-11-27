@@ -131,10 +131,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 # Development Environment Configuration
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
-MEDIA_URL = 'media/'
+MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'mediafiles'
 
 COLLECTFAST_ENABLED = False
@@ -154,6 +154,8 @@ if AWS_ACCESS_KEY_ID:  # pragma: no cover
     COLLECTFAST_ENABLED = True
     COLLECTFAST_STRATEGY = 'collectfast.strategies.boto3.Boto3Strategy'
     STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+    INSTALLED_APPS.append('s3_folder_storage')
+    INSTALLED_APPS.append('storages')
 
     # Static Media Folder
     STATICFILES_STORAGE = 's3_folder_storage.s3.StaticStorage'
@@ -167,10 +169,6 @@ if AWS_ACCESS_KEY_ID:  # pragma: no cover
     DEFAULT_S3_PATH = 'media'
     MEDIA_ROOT = f'/{DEFAULT_S3_PATH}/'
     MEDIA_URL = f'//{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com/{DEFAULT_S3_PATH}/'
-
-    # Lib django-s3-folder-storage
-    INSTALLED_APPS.append('s3_folder_storage')
-    INSTALLED_APPS.append('storages')
 
 # Sentry Configuration
 SENTRY_DSN = config('SENTRY_DSN', default=None)

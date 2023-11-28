@@ -9,9 +9,8 @@ gunicorn = "*"
 python-decouple = "*"
 dj-database-url = "*"
 psycopg2-binary = "*"
-django-s3-folder-storage = "*"
-django-storages = "*"
-collectfast = "*"
+django-storages = {version = "*", extras = ["s3"]}
+boto3 = "*"
 django-debug-toolbar = "*"
 sentry-sdk = "*"
 

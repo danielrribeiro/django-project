@@ -1,13 +1,11 @@
-# fly.toml app configuration file generated for django-pythonpro on 2023-09-11T11:51:31-03:00
+# fly.toml app configuration file generated for django-pythonpro on 2023-11-30T14:27:57-03:00
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
 app = "django-pythonpro"
-primary_region = "gru"
+primary_region = "gig"
 console_command = "/code/manage.py shell"
-
-[build]
 
 [deploy]
   release_command = "python manage.py migrate --noinput"

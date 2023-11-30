@@ -20,5 +20,5 @@ jobs:
       - uses: superfly/flyctl-actions/setup-flyctl@master
       - run: flyctl deploy --remote-only
     environment:
-      name: production
+      name: django-pythonpro
       url: https://django-pythonpro.fly.dev
